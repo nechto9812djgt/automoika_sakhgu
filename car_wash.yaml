@@ -1,0 +1,225 @@
+openapi: 3.0.0
+servers:
+- description: SwaggerHub API Auto Mocking
+  url: https://virtserver.swaggerhub.com/apipeople/shl-salesforce-api/1.0.3
+info:
+  description: This is a simple API
+  version: 1.0.3
+  title: SHL Salesforce API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+- name: Car
+  description: Cars API
+paths:
+  /Car:
+    post:
+      summary: Car Create API
+      description: Create a new users car
+      operationId: addCar
+      tags:
+      - Cars
+      requestBody:
+        description: The JSON payload containing all necessary data to create the
+          new car and associated records.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarAddRequest'
+      responses:
+        '201':
+          description: Car added successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarAddResponse'
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400ErrorResponse'
+        '401':
+          description: "Unauthorized.\n\n  :::info 401 errors\n  There are two different\
+            \ error schemas for 401 errors, one when the API credentials sent are\
+            \ wrong or invalid and another one when the API credentials are valid\
+            \ but the operation is prohibited for the consumer.\n  :::\n"
+        '500':
+          description: API Internal Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500ErrorResponse'
+  /Car/{CarId}:
+    get:
+      summary: Get a car by id
+      description: Get a car by id
+      operationId: getCarById
+      tags:
+      - Car Id
+      parameters:
+      - name: CarId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the car
+      responses:
+        '200':
+          description: Successful response with car details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarResponse'
+        '404':
+          description: Car not found.
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500ErrorResponse'
+    put:
+      summary: Update a car by ID
+      description: Update existing car information.
+      operationId: updateCarById
+      tags:
+      - Car
+      parameters:
+      - name: CarId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the car
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarAddRequest'
+      responses:
+        '200':
+          description: Car updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarResponse'
+        '400':
+          description: Bad Request.
+        '404':
+          description: Car not found.
+        '500':
+          description: Internal server error.
+    delete:
+      summary: Delete a car by ID
+      description: Delete a car record by its ID.
+      operationId: deleteCarById
+      tags:
+      - Car
+      parameters:
+      - name: CarId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the car
+      responses:
+        '204':
+          description: Car deleted successfully.
+        '404':
+          description: Car not found.
+        '500':
+          description: Internal server error.
+  /Cars:
+    get:
+      summary: Get all cars
+      description: Retrieve a list of all cars.
+      operationId: getAllCars
+      tags:
+      - Cars
+      responses:
+        '200':
+          description: List of cars.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarResponse'
+        '500':
+          description: Internal server error.
+components:
+  schemas:
+    CarAddRequest:
+      type: object
+      properties:
+        make:
+          type: string
+          example: Toyota
+        model:
+          type: string
+          example: Corolla
+        year:
+          type: integer
+          example: 2020
+        price:
+          type: number
+          example: 15000
+      required:
+      - make
+      - model
+      - year
+    CarAddResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 123abc
+        message:
+          type: string
+          example: Car added successfully.
+    Report:
+      type: object
+      properties:
+        identifier:
+          type: string
+          example: Individual Report 1,
+        reportId:
+          type: string
+          example: 0a341dc4-bf90-4a7b-8e29-ebc4787a7f0a
+    CarResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        year:
+          type: integer
+        price:
+          type: number
+    400ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Invalid request data.
+    500ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Internal server error.
+    401ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Unauthorized request.
