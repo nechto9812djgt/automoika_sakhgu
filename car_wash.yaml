@@ -15,7 +15,7 @@ tags:
 - name: Car
   description: Cars API
 paths:
-  /Car:
+  /car:
     post:
       summary: Car Create API
       description: Create a new users car
@@ -54,7 +54,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/500ErrorResponse'
-  /Car/{CarId}:
+  /car/{car_id}:
     get:
       summary: Get a car by id
       description: Get a car by id
