@@ -148,6 +148,6 @@
 * **UI макеты:** `/design/ui-prototypes/`
 * **Техническая поддержка:** `support@cleanway.app`
 
-![Use Case Diagram](https://example.com/diagram.png)
+![Use Case Diagram](./1.png)
 
 ---
