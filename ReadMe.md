@@ -152,4 +152,6 @@
 
 ![C4Model](./C4Model.png)
 
+![ERD](./ERD.svg)
+
 ---
