@@ -164,4 +164,6 @@
 
 ![Status model](./model.png)
 
+ [`Open API`](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/nechto9812djgt/automoika_sakhgu/blob/main/api-docs.yaml)
+
 ---
