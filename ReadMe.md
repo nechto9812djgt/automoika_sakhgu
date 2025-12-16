@@ -150,4 +150,6 @@
 
 ![Use Case Diagram](./1.png)
 
+![C4Model](./C4Model.png)
+
 ---
