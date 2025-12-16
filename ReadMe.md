@@ -148,10 +148,20 @@
 * **UI макеты:** `/design/ui-prototypes/`
 * **Техническая поддержка:** `support@cleanway.app`
 
+## Use Case Diagram
+
 ![Use Case Diagram](./1.png)
+
+## C4Model
 
 ![C4Model](./C4Model.png)
 
+## ERD
+
 ![ERD](./ERD.svg)
+
+## Status model
+
+![Status model](./model.png)
 
 ---
